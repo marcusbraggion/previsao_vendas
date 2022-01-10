@@ -48,6 +48,7 @@ packaging @ file:///tmp/build/80754af9/packaging_1637314298585/work
 pandas @ file:///C:/ci/pandas_1641443171711/work
 pandocfilters @ file:///C:/ci/pandocfilters_1605102497129/work
 parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
+patsy==0.5.2
 pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
 Pillow==8.4.0
 pipreqs==0.4.11
@@ -68,6 +69,8 @@ seaborn @ file:///tmp/build/80754af9/seaborn_1629307859561/work
 Send2Trash @ file:///tmp/build/80754af9/send2trash_1632406701022/work
 sip==4.19.13
 six @ file:///tmp/build/80754af9/six_1623709665295/work
+statsmodels==0.13.0
+tabulate==0.8.9
 terminado==0.9.4
 testpath @ file:///tmp/build/80754af9/testpath_1624638946665/work
 tornado @ file:///C:/ci/tornado_1606942392901/work
