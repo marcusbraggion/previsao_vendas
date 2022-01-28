@@ -60,21 +60,21 @@ Christmas: 31-Dec-10, 30-Dec-11, 28-Dec-12, 27-Dec-13
 
 **Step 01:** Data Collection: I collected data files from https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting/overview
 
-**Step 02:** Data Description: Here I checked number of rows, number os columns and apllied techniques to fill missing values, i've choosen to filling missing values with mean of each column.
+**Step 02:** Data description: Here I checked the number of rows, number of columns and applied techniques to fill in the missing values, I chose to fill in the missing values ​​with the average of each column and extract the statistics of central tendency and dispersal.
 
-**Step 03:** Feature Engineering: Here I created some new features like day, day_of_week, hour and month from date and created state_holiday feature.
+**Step 03:** Resource engineering: here I created some new resources, like the day, day_of_week, hour and month from date resource.
 
-**Step 04:** Exploratory Data Analysis: Here I created a hypothesis map, there were 7 hipothesis, where I found 2 relevancy findings.
+**Step 04:** Exploratory Data Analysis: Here I created a hypothesis map, there were 7 hypotheses, where I found 2 findings of relevance to the business.
 
-**Step 05:** Data Preparation: Here I chose to use the rescaling features with MinMaxScaler method and applied OneHotEncoding for holiday features and LabelEncoder method for feature type
+**Step 05:** Data Preparation: Here I chose to use the resize features with MinMaxScaler method and applied OneHotEncoding for holiday features and LabelEncoder method for feature type
 
-**Step 06:** Feature Selection: The results were very different, I decided to go with the random forest results variables
+**Step 06:** Feature Selection: The results of the algorithms were very different, I decided to use the random forest results variables because it makes more sense.
 
-**Step 07:** ML Modeling: Here I chose the Average Model as Baseline, then I implemented 2) Linear Regression, 3) Linear Regression - Lasso,  4) Random Forest Regressor and finally 5) XGBoost Regressor. To be more assertive about error of model, I implemented cross-validation models, and after comparing them, Random Forest Regressor was the one that presented the best result in the MAP, MAPE and RMSE metric and that's why I selected it to proceed with the project.
+**Step 07:** ML Modeling: Here I chose the Medium Model as Baseline, then I implemented 2) Linear Regression, 3) Linear Regression - Lasso, 4) Random Forest Regressor and finally 5) XGBoost Regressor. To be more assertive about the model error, I implemented cross-validation models, and after comparing them, the Random Forest Regressor was the one that presented the best result in the MAP, MAPE and RMSE metric and that's why I selected it to proceed with the project .
 
-**Step 08:** Hyperparameters Fine Tuning: 
+**Step 08:** Fine Tuning Hyperparameters
 
-**Step 09:** Interpretação e Tradução do Erro:  The model presents about 8% MAPE and 2200 MSE in , that means the projection error for each department is 2200 plus or minus.
+**Step 09:** Error Interpretation and Translation: The model shows about 8% MAPE and 2200 MSE in , which means that the projection error for each department is 2200 plus or minus.
 
 # 4.0 Future Works
 
