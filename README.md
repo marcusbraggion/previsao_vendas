@@ -70,7 +70,7 @@ Christmas: 31-Dec-10, 30-Dec-11, 28-Dec-12, 27-Dec-13
 
 **Step 06:** Feature Selection: The results were very different, I decided to go with the random forest results variables
 
-**Step 07:** ML Modeling: Here I chose the Average Model as Baseline, then I implemented 2) Linear Regression, 3) Linear Regression - Lasso and finally 4) Random Forest Regressor, to be more assertive about error model, I implemented cross-validation in all models, and after comparing them, Random Forest Regressor was the one that presented the best result in the MAP, MAPE and RMSE metric and that's why I selected it to proceed with the project.
+**Step 07:** ML Modeling: Here I chose the Average Model as Baseline, then I implemented 2) Linear Regression, 3) Linear Regression - Lasso,  4) Random Forest Regressor and finally 5) XGBoost Regressor. To be more assertive about error of model, I implemented cross-validation models, and after comparing them, Random Forest Regressor was the one that presented the best result in the MAP, MAPE and RMSE metric and that's why I selected it to proceed with the project.
 
 **Step 08:** Hyperparameters Fine Tuning: 
 
