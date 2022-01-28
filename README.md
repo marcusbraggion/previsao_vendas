@@ -1,3 +1,5 @@
+![walmart 2](https://user-images.githubusercontent.com/97288194/151464581-e98d27a2-1649-4f7e-8c45-df3e6ee02910.jpg)
+
 # Walmart-Sales-Store
 
 # 1.0 Business Context (Ficticious)
