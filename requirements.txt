@@ -3,6 +3,7 @@ async-generator @ file:///home/ktietz/src/ci/async_generator_1611927993394/work
 attrs @ file:///tmp/build/80754af9/attrs_1620827162558/work
 backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
 bleach @ file:///tmp/build/80754af9/bleach_1628110601003/work
+Boruta==0.3
 Bottleneck==1.3.2
 certifi==2021.10.8
 cffi @ file:///C:/ci/cffi_1636542074879/work
@@ -83,5 +84,6 @@ urllib3==1.26.8
 wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
 webencodings==0.5.1
 wincertstore==0.2
+xgboost==1.5.1
 yarg==0.1.9
 zipp @ file:///tmp/build/80754af9/zipp_1633618647012/work
