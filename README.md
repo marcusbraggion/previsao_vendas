@@ -2,27 +2,14 @@
 
 # Walmart-Sales-Store
 
-# 1.0 Business Context (Ficticious)
+# 1.0 Business Context
 
-Here it is historical sales data for 45 Walmart stores located in different regions. Each store contains many departments, and you have project the sales for each department in each store. To add to the challenge, selected holiday markdown events are included in the dataset. 
+The Walmart CFO want to predict how much each store will sell. He need to know if the budget will be enough to make a renovate each store.
 
-# 2.0 Business Problem
+# 2.0 Challenge
 
-1. What is the context?
-
-At a meeting with the leads of each department, the Walmart CEO made a proposal to renovate all of their store.
-
-2. What is the cause?
-
-The Walmart CEO want to predict how much each store will sell. He need to know if the budget will be enough to make a renovate each store.
-
-3. Who will lead the project?
-
-We need someone who really know what is the business problem, because he will lead the solution. Therefore, he's our stakeholder.
-
-4. How will be our solution?
-
-Project the sales for each department in each store using Machine Learning Model - Regression.
+Here it is historical sales data for 45 Walmart stores located in different regions, each store contains many departments. 
+The Walmart CFO asked you have to project the sales for each department in each store. 
 
 # 3.0 Business Assumptions
 
@@ -31,10 +18,15 @@ stores.csv: This file contains anonymized information about the 45 stores, indic
 train.csv: This is the historical training data, which covers to 2010-02-05 to 2012-11-01. Within this file you will find the following fields:
 
 Store - the store number
+
 Dept - the department number
+
 Date - the week
+
 Weekly_Sales -  sales for the given department in the given store
+
 IsHoliday - whether the week is a special holiday week
+
 test.csv
 
 This file is identical to train.csv, except we have withheld the weekly sales. You must predict the sales for each triplet of store, department, and date in this file.
@@ -42,40 +34,56 @@ This file is identical to train.csv, except we have withheld the weekly sales. Y
 features.csv: This file contains additional data related to the store, department, and regional activity for the given dates. It contains the following fields:
 
 Store - the store number
+
 Date - the week
+
 Temperature - average temperature in the region
+
 Fuel_Price - cost of fuel in the region
+
 MarkDown1-5 - anonymized data related to promotional markdowns that Walmart is running. MarkDown data is only available after Nov 2011, and is not available for all stores all the time. Any missing value is marked with an NA.
+
 CPI - the consumer price index
+
 Unemployment - the unemployment rate
+
 IsHoliday - whether the week is a special holiday week
+
 For convenience, the four holidays fall within the following weeks in the dataset (not all holidays are in the data):
 
 Super Bowl: 12-Feb-10, 11-Feb-11, 10-Feb-12, 8-Feb-13
+
 Labor Day: 10-Sep-10, 9-Sep-11, 7-Sep-12, 6-Sep-13
+
 Thanksgiving: 26-Nov-10, 25-Nov-11, 23-Nov-12, 29-Nov-13
+
 Christmas: 31-Dec-10, 30-Dec-11, 28-Dec-12, 27-Dec-13
 
 # 4.0 Solution Strategy
 
-**Step 01:** Data Collection: I collected data files from https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting/overview
+The strategy adopted was the following:
 
-**Step 02:** Data description: Here I checked the number of rows, number of columns and applied techniques to fill in the missing values, I chose to fill in the missing values ​​with the average of each column and extract the statistics of central tendency and dispersal.
+**Step 01.** Data Description: I searched for NAs, checked data types (and adapted some of them for analysis) and presented a statistical description.
 
-**Step 03:** Resource engineering: here I created some new resources, like the day, day_of_week, hour and month from date resource.
+**Step 02**. Feature Engineering: New features were created to make possible a more thorough analysis.
 
-**Step 04:** Exploratory Data Analysis: Here I created a hypothesis map, there were 7 hypotheses, where I found 2 findings of relevance to the business.
+**Step 03.** Data Filtering: Entries containing no information or containing information which does not match the scope of the project were filtered out.
+
+**Step 04.** Exploratory Data Analysis: I performed univariate, bivariate and multivariate data analysis, obtaining statistical properties of each of them, correlations and testing hypothesis (the most important of them are detailed in the following section).
 
 **Step 05:** Data Preparation: Here I chose to use the resize features with MinMaxScaler method and applied OneHotEncoding for holiday features and LabelEncoder method for feature type
 
-**Step 06:** Feature Selection: The results of the algorithms were very different, I decided to use the random forest results variables because it makes more sense.
+**Step 06**. Feature selection: The statistically most relevant features were selected using the Boruta package. Alternatively, I performed the feature selection using the Random Forest as feature selector, obtaining the "feature importances" from both of them. In the next steps, the machine learning models trained using the features selected by Boruta presented a better generalizability performance.
 
-**Step 07:** ML Modeling: Here I chose the Medium Model as Baseline, then I implemented 2) Linear Regression, 3) Linear Regression - Lasso, 4) Random Forest Regressor and finally 5) XGBoost Regressor. To be more assertive about the model error, I implemented cross-validation models, and after comparing them, the Random Forest Regressor was the one that presented the best result in the MAP, MAPE and RMSE metric and that's why I selected it to proceed with the project .
+**Step 07**. Machine learning modelling: Some machine learning models were trained. The one that presented best results after cross-validation went through a further stage of hyperparameter fine tunning to optimize the model's generalizability.
 
-**Step 08:** Fine Tuning Hyperparameters
+**Step 08.** Model-to-business: The models performance is converted into business values.
 
-**Step 09:** Error Interpretation and Translation: The model shows about 8% MAPE and 2200 MSE in , which means that the projection error for each department is 2200 plus or minus.
+# 5.0 Conclusions
 
-# 4.0 Future Works
+I used the Random Forest Regressor model to learn all the behavior of the data, and after modeling the data, I used it to make predictions, using 70% of the dataset to train it and then test it on 30% of the data. not seen by the model to measure its performance. After all the steps mentioned and with the predictions made, I performed the evaluation of the model's performance, bringing the result of the prediction for each Walmart store, through two metrics: best and worst scenario. And MAE and MAPE: two metrics that are easier understanding so that the business team can use the model data in a more practical way in their daily lives. I also brought 4 graphs that demonstrate the result and error of the model for each store and finally I was able to generate a complete result of the model with a total forecast of R$1,075,524.77 in revenue.
 
-**Step 10:** Deploy Model to Production
+# 6.0 Next steps and Improvements
+
+* Increase model accuracy by 8%.
+* Deploy the model to production, so that time can consume the model results through a web app (telegram).
