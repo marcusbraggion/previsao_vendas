@@ -2,54 +2,54 @@
 
 # Walmart-Sales-Store
 
-# 1.0 Business Context
+# 1.0 Contexto (Business)
 
-The Walmart CFO want to predict how much each store will sell. He need to know if the budget will be enough to make a renovate each store.
+O CFO do Walmart quer prever quanto cada loja venderá. Ele precisa saber se o orçamento será suficiente para fazer uma reforma em cada loja.
 
-# 2.0 Challenge
+# 2.0 Desafio
 
-Here it is historical sales data for 45 Walmart stores located in different regions, each store contains many departments. 
-The Walmart CFO asked you have to project the sales for each department in each store. 
+Aqui estão os dados históricos de vendas de 45 lojas Walmart localizadas em diferentes regiões, cada loja contém muitos departamentos.
+O CFO do Walmart pediu que você projetasse as vendas de cada departamento em cada loja.
 
-# 3.0 Business Assumptions
+# 3.0 Premissas do Negócio
 
-stores.csv: This file contains anonymized information about the 45 stores, indicating the type and size of store.
+stores.csv: Este arquivo contém informações anônimas sobre as 45 lojas, indicando o tipo e o tamanho da loja.
 
-train.csv: This is the historical training data, which covers to 2010-02-05 to 2012-11-01. Within this file you will find the following fields:
+train.csv: Estes são os dados históricos de treinamento, que cobrem de 2010-02-05 a 2012-11-01. Dentro deste arquivo você encontrará os seguintes campos:
 
-Store - the store number
+Store - O número da loja
 
-Dept - the department number
+Dept - O número do departamento
 
-Date - the week
+Date - A semana
 
-Weekly_Sales -  sales for the given department in the given store
+Weekly_Sales -  Vendas para determinado departamento em determinada loja
 
-IsHoliday - whether the week is a special holiday week
+IsHoliday - Se a semana é uma semana de feriado especial
 
 test.csv
 
-This file is identical to train.csv, except we have withheld the weekly sales. You must predict the sales for each triplet of store, department, and date in this file.
+Este arquivo é idêntico ao train.csv, exceto que retemos as vendas semanais. Você deve prever as vendas para cada trio de loja, departamento e data neste arquivo.
 
-features.csv: This file contains additional data related to the store, department, and regional activity for the given dates. It contains the following fields:
+features.csv: Este arquivo contém dados adicionais relacionados à loja, departamento e atividade regional para as datas especificadas. Ele contém os seguintes campos:
 
-Store - the store number
+Store - O número da loja
 
-Date - the week
+Date - A semana
 
-Temperature - average temperature in the region
+Temperature - Temperatura média da região
 
-Fuel_Price - cost of fuel in the region
+Fuel_Price - Custo do combustível na região
 
-MarkDown1-5 - anonymized data related to promotional markdowns that Walmart is running. MarkDown data is only available after Nov 2011, and is not available for all stores all the time. Any missing value is marked with an NA.
+MarkDown1-5 - Dados anônimos relacionados a descontos promocionais que o Walmart está executando. Os dados MarkDown só estão disponíveis após novembro de 2011 e não estão disponíveis para todas as lojas o tempo todo. Qualquer valor ausente é marcado com um NA.
 
-CPI - the consumer price index
+CPI - O índice de preços ao consumidor
 
-Unemployment - the unemployment rate
+Unemployment - a taxa de desemprego
 
-IsHoliday - whether the week is a special holiday week
+IsHoliday - se a semana é uma semana de feriado especial
 
-For convenience, the four holidays fall within the following weeks in the dataset (not all holidays are in the data):
+Por conveniência, os quatro feriados se enquadram nas semanas a seguir no conjunto de dados (nem todos os feriados estão nos dados):
 
 Super Bowl: 12-Feb-10, 11-Feb-11, 10-Feb-12, 8-Feb-13
 
@@ -59,31 +59,33 @@ Thanksgiving: 26-Nov-10, 25-Nov-11, 23-Nov-12, 29-Nov-13
 
 Christmas: 31-Dec-10, 30-Dec-11, 28-Dec-12, 27-Dec-13
 
-# 4.0 Solution Strategy
+# 4.0 Estratégia de Solução
 
-The strategy adopted was the following:
+A estratégia adotada foi a seguinte:
 
-**Step 01.** Data Description: I searched for NAs, checked data types (and adapted some of them for analysis) and presented a statistical description.
+**Passo 01.** Descrição dos dados: Pesquisei os NAs, verifiquei os tipos de dados (e adaptei alguns deles para análise) e apresentei uma descrição estatística.
 
-**Step 02**. Feature Engineering: New features were created to make possible a more thorough analysis.
+**Passo 02**. Engenharia de Variáveis: Novas funcionalidades foram criadas para possibilitar uma análise mais completa.
 
-**Step 03.** Data Filtering: Entries containing no information or containing information which does not match the scope of the project were filtered out.
+**Etapa 03.** Filtragem de Dados: As entradas que não continham informações ou que continham informações que não correspondiam ao escopo do projeto foram filtradas.
 
-**Step 04.** Exploratory Data Analysis: I performed univariate, bivariate and multivariate data analysis, obtaining statistical properties of each of them, correlations and testing hypothesis (the most important of them are detailed in the following section).
+**Passo 04.** Análise Exploratória de Dados: Realizei análises de dados univariados, bivariados e multivariados, obtendo propriedades estatísticas de cada um deles, correlações e testando hipóteses (as mais importantes estão detalhadas na seção a seguir).
 
-**Step 05:** Data Preparation: Here I chose to use the resize features with MinMaxScaler method and applied OneHotEncoding for holiday features and LabelEncoder method for feature type
+**Etapa 05:** Preparação de dados: Aqui optei por usar os recursos de redimensionamento com o método MinMaxScaler e apliquei OneHotEncoding para recursos de feriado e método LabelEncoder para tipo de recurso.
 
-**Step 06**. Feature selection: The statistically most relevant features were selected using the Boruta package. Alternatively, I performed the feature selection using the Random Forest as feature selector, obtaining the "feature importances" from both of them. In the next steps, the machine learning models trained using the features selected by Boruta presented a better generalizability performance.
+**Passo 06**. Seleção de recursos: Os recursos estatisticamente mais relevantes foram selecionados usando o pacote Boruta. Alternativamente, realizei a seleção de recursos usando o Random Forest como seletor de recursos, obtendo as "importâncias dos recursos" de ambos. Nas próximas etapas, os modelos de aprendizado de máquina treinados usando os recursos selecionados por Boruta apresentaram melhor desempenho de generalização.
 
-**Step 07**. Machine learning modelling: Some machine learning models were trained. The one that presented best results after cross-validation went through a further stage of hyperparameter fine tunning to optimize the model's generalizability.
+**Passo 07**. Modelagem de aprendizado de máquina: alguns modelos de aprendizado de máquina foram treinados. O que apresentou melhores resultados após a validação cruzada passou por mais uma etapa de ajuste fino de hiperparâmetros para otimizar a generalização do modelo.
 
-**Step 08.** Model-to-business: The models performance is converted into business values.
+**Passo 08.** Model-to-business: O desempenho dos modelos é convertido em valores de negócios.
 
-# 5.0 Conclusions
+# 5.0 Conclusão
 
-I used the Random Forest Regressor model to learn all the behavior of the data, and after modeling the data, I used it to make predictions, using 70% of the dataset to train it and then test it on 30% of the data. not seen by the model to measure its performance. After all the steps mentioned and with the predictions made, I performed the evaluation of the model's performance, bringing the result of the prediction for each Walmart store, through two metrics: best and worst scenario. And MAE and MAPE: two metrics that are easier understanding so that the business team can use the model data in a more practical way in their daily lives. I also brought 4 graphs that demonstrate the result and error of the model for each store and finally I was able to generate a complete result of the model with a total forecast of R$1,075,524.77 in revenue.
+# 5.0 Conclusão
 
-# 6.0 Next steps and Improvements
+Usei o modelo Random Forest Regressor para aprender todo o comportamento dos dados e, após modelar os dados, usei-os para fazer previsões, usando 70% do conjunto de dados para treiná-lo e depois testá-lo em 30% dos dados não  visto pelo modelo para medir seu desempenho. Após todos os passos citados e com as previsões feitas, realizei a avaliação do desempenho do modelo, trazendo o resultado da previsão para cada loja Walmart, através de duas métricas: melhor e pior cenário. E MAE e MAPE: duas métricas de fácil entendimento para que a equipe de negócios possa utilizar os dados do modelo de forma mais prática no seu dia a dia. Trouxe também 4 gráficos que demonstram o resultado e erro do modelo para cada loja e por fim consegui gerar um resultado completo do modelo com uma previsão total de R$ 1.075.524,77 de receita.
 
-* Increase model accuracy by 8%.
-* Deploy the model to production, so that time can consume the model results through a web app (telegram).
+# 6.0 Próximos passos e melhorias
+
+* Aumentar a precisão do modelo em 8%.
+* Implantar o modelo em produção, para que o tempo possa consumir os resultados do modelo por meio de um aplicativo da web (telegram).
