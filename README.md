@@ -81,8 +81,6 @@ A estratégia adotada foi a seguinte:
 
 # 5.0 Conclusão
 
-# 5.0 Conclusão
-
 Usei o modelo Random Forest Regressor para aprender todo o comportamento dos dados e, após modelar os dados, usei-os para fazer previsões, usando 70% do conjunto de dados para treiná-lo e depois testá-lo em 30% dos dados não  visto pelo modelo para medir seu desempenho. Após todos os passos citados e com as previsões feitas, realizei a avaliação do desempenho do modelo, trazendo o resultado da previsão para cada loja Walmart, através de duas métricas: melhor e pior cenário. E MAE e MAPE: duas métricas de fácil entendimento para que a equipe de negócios possa utilizar os dados do modelo de forma mais prática no seu dia a dia. Trouxe também 4 gráficos que demonstram o resultado e erro do modelo para cada loja e por fim consegui gerar um resultado completo do modelo com uma previsão total de R$ 1.075.524,77 de receita.
 
 # 6.0 Próximos passos e melhorias
